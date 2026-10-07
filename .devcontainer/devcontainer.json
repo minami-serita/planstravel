@@ -1,0 +1,38 @@
+{
+  "name": "たびプラン（Claude Code 演習）",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "postCreateCommand": {
+    "dependencies": "npm ci",
+    "claude-code": "curl -fsSL https://claude.ai/install.sh | bash"
+  },
+  "waitFor": "postCreateCommand",
+  "forwardPorts": [
+    3000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "サイトのプレビュー",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MS-CEINTL.vscode-language-pack-ja",
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        "files.autoSave": "afterDelay",
+        "workbench.startupEditor": "none"
+      }
+    },
+    "codespaces": {
+      "openFiles": [
+        "docs/README.md"
+      ]
+    }
+  }
+}
